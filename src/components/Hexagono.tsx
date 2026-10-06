@@ -35,7 +35,7 @@ export function Hexagono({ pilares, largura = 100, foco, centro }: Props) {
               ...favo(desloc[i][0], desloc[i][1]),
               background: p.cor, color: p.tinta, opacity: apagado ? 0.3 : 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
-              padding: `0 ${Math.round(w * 0.11)}px`, fontWeight: 700, fontSize: fonte, lineHeight: 1.2,
+              padding: `0 ${Math.round(w * 0.11)}px`, fontWeight: 600, fontSize: fonte, lineHeight: 1.15,
               textDecoration: 'none', transition: 'transform 0.15s',
             }}
           >
@@ -47,12 +47,12 @@ export function Hexagono({ pilares, largura = 100, foco, centro }: Props) {
         to={c.para}
         className="hex"
         style={{
-          ...favo(0, 0), background: 'var(--espresso)', color: 'var(--creme)', textDecoration: 'none',
+          ...favo(0, 0), background: 'var(--vinho)', color: 'var(--creme)', textDecoration: 'none',
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, textAlign: 'center', padding: '0 10px',
         }}
       >
         <span style={{ fontSize: Math.round(w * 0.105), letterSpacing: 1, textTransform: 'uppercase', color: 'var(--mel)', fontWeight: 700 }}>{c.rotulo}</span>
-        <span style={{ fontFamily: 'Petrona, serif', fontSize: Math.round(w * 0.16), fontWeight: 700, lineHeight: 1.15 }}>{c.titulo}</span>
+        <span style={{ fontFamily: 'var(--fonte-titulo)', fontSize: Math.round(w * 0.17), fontWeight: 500, lineHeight: 1.1 }}>{c.titulo}</span>
       </Link>
     </div>
   )

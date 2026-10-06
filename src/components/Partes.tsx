@@ -39,7 +39,7 @@ export function CartaoCiclo({ ciclo, pilares, escuro = false }: { ciclo: Ciclo; 
         <span className="rotulo" style={{ color: escuro ? 'var(--mel)' : undefined }}>Ciclo {ciclo.numero} · {periodoCiclo(ciclo)}</span>
         <EtiquetaStatus status={ciclo.status} />
       </div>
-      <span style={{ fontFamily: 'Petrona, serif', fontSize: 24, fontWeight: 700, lineHeight: 1.2 }}>{ciclo.titulo}</span>
+      <span style={{ fontFamily: 'var(--fonte-titulo)', fontSize: 24, fontWeight: 700, lineHeight: 1.2 }}>{ciclo.titulo}</span>
       <span style={{ fontSize: 16, lineHeight: 1.5, color: escuro ? 'var(--texto-claro)' : 'var(--texto-medio)' }}>{ciclo.tema}</span>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', paddingTop: 4 }}>
         {ciclo.pilares.map((s) => <EtiquetaPilar key={s} pilar={pilarPorSlug(pilares, s)} />)}
@@ -52,7 +52,7 @@ export function CartaoProximaRoda({ roda, ciclo }: { roda: Roda; ciclo?: Ciclo }
   return (
     <Link to={`/ciclo/${ciclo?.numero ?? ''}`} className="cartao cartao-escuro" style={{ gap: 6 }}>
       <span className="rotulo" style={{ color: 'var(--mel)' }}>Próxima roda{ciclo ? ` · ciclo ${ciclo.numero}` : ''}</span>
-      <span style={{ fontFamily: 'Petrona, serif', fontSize: 21, fontWeight: 700, lineHeight: 1.25 }}>{roda.ordem} · {roda.titulo}</span>
+      <span style={{ fontFamily: 'var(--fonte-titulo)', fontSize: 21, fontWeight: 700, lineHeight: 1.25 }}>{roda.ordem} · {roda.titulo}</span>
       <span style={{ fontSize: 15, color: 'var(--texto-claro)' }}>{diaRoda(roda.data)}</span>
       <span style={{ fontSize: 14, color: 'var(--texto-claro)' }}>{horaRoda(roda.data)}</span>
       {roda.link_ao_vivo && <span style={{ fontWeight: 700, color: 'var(--mel)', paddingTop: 4 }}>Link da roda disponível</span>}

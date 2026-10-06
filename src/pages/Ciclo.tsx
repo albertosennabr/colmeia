@@ -81,7 +81,7 @@ export function PaginaCiclo() {
                       style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 4 }}
                     >
                       <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8, alignItems: 'flex-start' }}>
-                        <span style={{ fontFamily: 'Petrona, serif', fontWeight: 700, fontSize: 18, lineHeight: 1.25 }}>{r.titulo}</span>
+                        <span style={{ fontFamily: 'var(--fonte-titulo)', fontWeight: 700, fontSize: 18, lineHeight: 1.25 }}>{r.titulo}</span>
                         {estado === 'proxima' && <span className="etiqueta" style={{ background: 'var(--terracota)', color: 'var(--branco)' }}>Próxima</span>}
                         {estado === 'feita' && <span className="etiqueta" style={{ background: 'var(--areia)', color: 'var(--musgo)' }}>Feita</span>}
                       </span>

@@ -41,7 +41,7 @@ export function VisaoGeral({ irPara }: { irPara: (aba: string) => void }) {
         </div>
         <div className="cartao" style={{ gap: 8 }}>
           <span className="rotulo">Ciclo da vez</span>
-          {ciclo ? <b style={{ fontFamily: 'Petrona, serif', fontSize: 22 }}>{ciclo.numero} · {ciclo.titulo}</b> : <span className="suave">Nenhum ciclo cadastrado.</span>}
+          {ciclo ? <b style={{ fontFamily: 'var(--fonte-titulo)', fontSize: 22 }}>{ciclo.numero} · {ciclo.titulo}</b> : <span className="suave">Nenhum ciclo cadastrado.</span>}
           {proxima && (
             <>
               <span className="rotulo" style={{ paddingTop: 10 }}>Próxima roda</span>
