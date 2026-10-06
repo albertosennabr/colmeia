@@ -1,9 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { supabase, type Post } from '../lib/supabase'
+import { supabase, SELECT_POST, type Post } from '../lib/supabase'
 import { useColmeia, pilarPorSlug } from '../lib/contexto'
 import { haQuanto } from '../lib/formato'
-import { Nav } from '../components/Nav'
 import { IconeVoltar } from '../components/Icones'
 
 type Resposta = { id: number; texto: string; criado_em: string; autora: string; perfis: { nome: string } | null }
@@ -18,7 +17,7 @@ export function PaginaPost() {
   const [enviando, setEnviando] = useState(false)
 
   async function carregar() {
-    const { data } = await supabase.from('posts').select('id, texto, criado_em, pilar_slug, autora, perfis(nome), respostas(count)').eq('id', Number(id)).single()
+    const { data } = await supabase.from('posts').select(SELECT_POST).eq('id', Number(id)).single()
     setPost(data as unknown as Post)
     const r = await supabase.from('respostas').select('id, texto, criado_em, autora, perfis(nome)').eq('post_id', Number(id)).order('criado_em')
     setRespostas((r.data as unknown as Resposta[]) ?? [])
@@ -53,9 +52,8 @@ export function PaginaPost() {
   const podeApagar = (autora: string) => autora === sessao.user.id || perfil?.admin
 
   return (
-    <>
-      <main className="tela tela-com-nav" style={{ gap: 16 }}>
-        <button className="voltar" onClick={() => navegar(-1)} aria-label="Voltar" style={{ background: 'none', border: 'none', padding: 0 }}><IconeVoltar /></button>
+    <div className="secao" style={{ gap: 16, maxWidth: 760 }}>
+        <button className="voltar" onClick={() => navegar(-1)} aria-label="Voltar"><IconeVoltar /></button>
 
         <article className="cartao" style={{ gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -84,8 +82,6 @@ export function PaginaPost() {
           <textarea id="resposta" className="entrada" value={texto} onChange={(e) => setTexto(e.target.value)} maxLength={4000} />
           <button className="botao" type="submit" disabled={enviando || !texto.trim()}>{enviando ? 'Enviando…' : 'Enviar resposta'}</button>
         </form>
-      </main>
-      <Nav />
-    </>
+    </div>
   )
 }

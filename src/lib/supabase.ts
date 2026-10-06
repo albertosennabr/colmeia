@@ -19,27 +19,48 @@ export type Pilar = {
   tinta: string
 }
 
-export type Encontro = {
+export type StatusCiclo = 'em_breve' | 'inscricoes' | 'em_andamento' | 'encerrado'
+
+export type Ciclo = {
   id: number
-  ciclo: number
+  numero: number
+  titulo: string
+  tema: string
+  pilares: string[]
+  inicio: string
+  fim: string
+  vagas: number | null
+  status: StatusCiclo
+}
+
+export type Roda = {
+  id: number
+  ciclo_id: number
   ordem: number
   titulo: string
+  descricao: string
+  pratica: string
+  grao_de_polen: string
   pilar_slug: string | null
   data: string
   link_ao_vivo: string | null
   gravacao_url: string | null
 }
 
+export type TipoConteudo = 'grao' | 'audio' | 'meditacao' | 'video' | 'apostila'
+
 export type Conteudo = {
   id: number
-  tipo: 'audio' | 'meditacao' | 'video' | 'apostila'
+  tipo: TipoConteudo
   titulo: string
   descricao: string
   pilar_slug: string | null
+  ciclo_id: number | null
   duracao_min: number | null
   arquivo: string | null
   url: string | null
   destaque: boolean
+  criado_em: string
 }
 
 export type Perfil = { id: string; nome: string; admin: boolean }
@@ -52,4 +73,21 @@ export type Post = {
   autora: string
   perfis: { nome: string } | null
   respostas: { count: number }[]
+}
+
+export const SELECT_POST = 'id, texto, criado_em, pilar_slug, autora, perfis(nome), respostas(count)'
+
+export const NOMES_TIPO: Record<TipoConteudo, string> = {
+  grao: 'Grão de Pólen',
+  audio: 'Áudio',
+  meditacao: 'Meditação',
+  video: 'Vídeo',
+  apostila: 'Apostila',
+}
+
+export const NOMES_STATUS: Record<StatusCiclo, string> = {
+  em_breve: 'Em breve',
+  inscricoes: 'Inscrições abertas',
+  em_andamento: 'Em andamento',
+  encerrado: 'Encerrado',
 }

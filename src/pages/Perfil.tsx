@@ -2,7 +2,6 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useColmeia } from '../lib/contexto'
-import { Nav } from '../components/Nav'
 import { IconeVoltar } from '../components/Icones'
 
 export function PaginaPerfil() {
@@ -20,9 +19,8 @@ export function PaginaPerfil() {
   }
 
   return (
-    <>
-      <main className="tela tela-com-nav">
-        <Link to="/" className="voltar" aria-label="Voltar ao início"><IconeVoltar /></Link>
+    <div className="secao" style={{ gap: 22, maxWidth: 560 }}>
+        <Link to="/" className="voltar so-celular" aria-label="Voltar ao início"><IconeVoltar /></Link>
         <h1>O meu perfil</h1>
 
         <form onSubmit={salvar} className="secao">
@@ -36,16 +34,14 @@ export function PaginaPerfil() {
         <p className="suave">Entrou como {sessao.user.email}</p>
 
         <div className="aviso">
-          <b>Coloque a Colmeia na tela do celular.</b><br />
+          <b>Coloque a Colmeia na tela do celular.</b> Ela abre como um aplicativo.<br />
           No iPhone: no Safari, toque em Compartilhar e depois em “Adicionar à Tela de Início”.<br />
           No Android: no Chrome, toque nos três pontinhos e depois em “Adicionar à tela inicial”.
         </div>
 
-        {perfil?.admin && <Link to="/admin" className="botao botao-mel">Área da Paula</Link>}
+        {perfil?.admin && <Link to="/painel" className="botao botao-mel">Abrir o painel de administração</Link>}
 
-        <button className="botao-texto" onClick={() => supabase.auth.signOut()}>Sair</button>
-      </main>
-      <Nav />
-    </>
+        <button className="botao-texto" style={{ alignSelf: 'flex-start' }} onClick={() => supabase.auth.signOut()}>Sair da conta</button>
+    </div>
   )
 }
